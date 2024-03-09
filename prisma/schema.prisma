@@ -1,0 +1,70 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Definindo o modelo para a tabela Colecao
+model Colection {
+  id          String     @id @default(uuid())
+  name        String
+  description String?
+  created_at  DateTime   @default(now())
+  updated_at  DateTime   @default(now())
+
+  @@map("colections")
+  garments    Garment[]  // Relacionamento com a tabela Garment
+}
+
+// Definindo o modelo para a tabela Garment
+model Garment {
+  id            String    @id @default(uuid())
+  name          String
+  description   String
+  price         String
+  banner        String
+  created_at    DateTime  @default(now())
+  updated_at    DateTime  @default(now())
+  
+  // Relacionamento com a tabela Colection
+  colection     Colection @relation(fields: [colection_id], references: [id])
+  colection_id  String    // Chave estrangeira referenciando a tabela Colection
+
+  // Adicionando o campo de relação oposto para o relacionamento com a tabela Type_Piece
+  type_piece    Type_Piece? @relation(fields: [type_piece_id], references: [id])
+  type_piece_id String?    // Chave estrangeira referenciando a tabela Type_Piece
+  
+  @@map("garments")
+}
+
+// Definindo o modelo para a tabela Tipo_Peca
+model Type_Piece {
+  id          String    @id @default(uuid())
+  type        String
+  
+  pieces  Garment[] // Relacionamento com a tabela Garment
+  
+  @@map("type_pieces")
+}
+
+
+//Definindo um modelo para Usuários
+model Users{
+  id            String    @id @default(uuid())
+  name          String
+  email         String
+  password      String
+  created_at    DateTime  @default(now())
+  updated_at    DateTime  @default(now())
+
+  @@map("users")
+}
