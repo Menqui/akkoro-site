@@ -7,6 +7,7 @@ class ListColectionService {
         select:{
             name:true,
             description:true,
+            
         },
         orderBy:{
             created_at:Prisma.SortOrder.desc //ordena colocando a coleção mais recente no topo

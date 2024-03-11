@@ -1,12 +1,18 @@
 import { Router,Request,Response } from "express";
+import multer from "multer";
 import { CreateUserController } from './controllers/user/CreateUSerController';
 import {AuthUserController} from './controllers/user/AuthUserController';
 import { DetailUserController } from "./controllers/user/DetailUserControler";
 import  {isAuthenticated} from './middlewares/isAuthenticated';
 import { CreateColectionController} from './controllers/colections/CreateColectionController';
 import { ListColectionControler } from './controllers/colections/ListColectionControler';
+import { CreateGarmetControler } from "./controllers/garments/CreateGarmetsControler"; 
+import {ListByColectionControler} from "./controllers/garments/ListByColectionControler";
+import uploadConfig from './config/multer';
 
 const router = Router();
+
+const upload = multer(uploadConfig.upload("./tmp"));
 
 
 // ------- ROTAS USER --------
@@ -28,6 +34,8 @@ router.post('/colection',isAuthenticated,new CreateColectionController().handle)
 router.get('/colection',isAuthenticated,new ListColectionControler().handle);//listar as coleções
 
 // ------- ROTAS GARMENTS --------
+router.post('/garment',isAuthenticated,upload.single('file'),new CreateGarmetControler().handle);//Cadastrar as peças de roupa
 
-
+router.get('/colection/garment',isAuthenticated,new ListByColectionControler().handle)//Lista os produtos pela coleção 
+ 
 export {router};
