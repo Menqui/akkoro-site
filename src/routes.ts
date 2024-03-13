@@ -9,6 +9,8 @@ import { CreateColectionController} from './controllers/colections/CreateColecti
 import { ListColectionControler } from './controllers/colections/ListColectionControler';
 import { CreateGarmetControler } from "./controllers/garments/CreateGarmetsControler"; 
 import {ListByColectionControler} from "./controllers/garments/ListByColectionControler";
+import { UpdateColectionControler } from "./controllers/colections/UpdateColectionControler";
+import { DeleteColectionControler } from "./controllers/colections/DeleteColectionControler";
 import uploadConfig from './config/multer';
 
 const router = Router();
@@ -33,6 +35,10 @@ router.get('/userinfo',isAuthenticatedUser,new DetailUserController().handle)//r
 router.post('/colection',isAuthenticated,new CreateColectionController().handle) //cadastrar coleção
 
 router.get('/colection',isAuthenticated,new ListColectionControler().handle);//listar as coleções
+
+router.put('/colection/name',isAuthenticated,new UpdateColectionControler().handle)//atualizar as coleções
+
+router.delete('/colection/name',isAuthenticated,new DeleteColectionControler().handle)//Deleta as coleções
 
 // ------- ROTAS GARMENTS --------
 router.post('/garment',isAuthenticated,upload.single('file'),new CreateGarmetControler().handle);//Cadastrar as peças de roupa

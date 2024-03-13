@@ -5,6 +5,7 @@ class ListColectionService {
     async execute(){ 
        const colection = await prismaClient.colection.findMany({
         select:{
+            id:true,
             name:true,
             description:true,
             
