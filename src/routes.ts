@@ -12,7 +12,9 @@ import {ListByColectionControler} from "./controllers/garments/ListByColectionCo
 import { UpdateColectionControler } from "./controllers/colections/UpdateColectionControler";
 import { DeleteColectionControler } from "./controllers/colections/DeleteColectionControler";
 import { DeleteGarmentControler } from "./controllers/garments/DeleteGarmentControler";
+import { UpdateGarmentControler } from "./controllers/garments/UpdateGarmentControler";
 import uploadConfig from './config/multer';
+
 
 const router = Router();
 
@@ -47,5 +49,7 @@ router.post('/garment',isAuthenticated,upload.single('file'),new CreateGarmetCon
 router.get('/colection/garment',isAuthenticated,new ListByColectionControler().handle)//Lista os produtos pela coleção 
  
 router.delete('/colection/garment/name',isAuthenticated, new DeleteGarmentControler().handle)//Deleta uma peça específica
+
+router.put('/garment/name',isAuthenticated,new UpdateGarmentControler().handle)//Atualiza a peça
 
 export {router};

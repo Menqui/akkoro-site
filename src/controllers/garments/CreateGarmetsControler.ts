@@ -16,10 +16,10 @@ class CreateGarmetControler {
        
         if(!req.file){
             console.log(req.file)
-            throw new Error("Erro ao enviar foto!");
+            throw new Error("Erro ao enviar foto/Video!");
         }
         else{
-            const {originalname,filename:banner} = req.file;
+            const {filename:banner} = req.file;
 
             const createGarmet = await createGarmetService.execute({
                 name,
