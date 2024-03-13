@@ -4,6 +4,7 @@ import { CreateUserController } from './controllers/user/CreateUSerController';
 import {AuthUserController} from './controllers/user/AuthUserController';
 import { DetailUserController } from "./controllers/user/DetailUserControler";
 import  {isAuthenticated} from './middlewares/isAuthenticated';
+import {isAuthenticatedUser} from './middlewares/isAuthenticatedUser';
 import { CreateColectionController} from './controllers/colections/CreateColectionController';
 import { ListColectionControler } from './controllers/colections/ListColectionControler';
 import { CreateGarmetControler } from "./controllers/garments/CreateGarmetsControler"; 
@@ -25,7 +26,7 @@ router.post('/users',new CreateUserController().handle) //rota de cadastro
 
 router.post('/session',new AuthUserController().handle)//rota de login
 
-router.get('/userinfo',isAuthenticated,new DetailUserController().handle)//rota de pegar infos do user
+router.get('/userinfo',isAuthenticatedUser,new DetailUserController().handle)//rota de pegar infos do user
 
 
 // ------- ROTAS COLECTIONS --------

@@ -6,11 +6,12 @@ interface UserRequest {
     name:string;
     email:string;
     password:string;
+    isAdmin?: boolean
 
 }
 
 class CreateUserService{
-    async execute({name,email,password}:UserRequest){
+    async execute({name,email,password,isAdmin}:UserRequest){
        // verifica se enviou um e-mail
        if(!email){
         throw new Error("E-mail incorreto!");
@@ -36,11 +37,13 @@ class CreateUserService{
                 name: name,
                 email: email,
                 password: passwordHash,
+                isAdmin:isAdmin
             },
             select:{   //informar o que você quer devolver ao user
                 id: true,
                 name: true,
                 email:true,
+                isAdmin:true
             }
         })
 
