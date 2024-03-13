@@ -50,6 +50,6 @@ router.get('/colection/garment',isAuthenticated,new ListByColectionControler().h
  
 router.delete('/colection/garment/name',isAuthenticated, new DeleteGarmentControler().handle)//Deleta uma peça específica
 
-router.put('/garment/name',isAuthenticated,new UpdateGarmentControler().handle)//Atualiza a peça
+router.put('/garment/name',isAuthenticated,upload.single('file'),new UpdateGarmentControler().handle)//Atualiza a peça
 
 export {router};

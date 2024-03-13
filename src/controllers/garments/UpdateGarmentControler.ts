@@ -8,7 +8,7 @@ interface MulterRequest extends Request {
 
 class UpdateGarmentControler{
     async handle(req:MulterRequest,res:Response){
-        const { id, name, description, price, banner } = req.body;
+        const { id, name, description, price } = req.body;
         const updateGarmentService = new UpdateGarmentService();
 
         try {
