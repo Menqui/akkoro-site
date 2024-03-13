@@ -6,12 +6,12 @@ class DeleteColectionControler{
         const deleteColecition = new DeleteColectionService;
 
         const {id} = req.body;
-        console.log(id)
+       
 
         const del = await deleteColecition.execute({id});
         
         console.log(del)
-        return res.json(del)
+        return res.status(200).json("Coleção deletada com sucesso!");
         
     }
 }

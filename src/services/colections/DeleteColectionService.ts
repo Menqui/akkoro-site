@@ -1,10 +1,9 @@
 import prismaClient from "../../prisma/prisma";
-import { Response } from "express";
+
 
 interface DeleteRequest{
     id:string;
 }
-
 
 class DeleteColectionService{
   async execute({id}:DeleteRequest){

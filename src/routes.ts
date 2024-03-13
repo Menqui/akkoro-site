@@ -1,4 +1,4 @@
-import { Router,Request,Response } from "express";
+import { Router} from "express";
 import multer from "multer";
 import { CreateUserController } from './controllers/user/CreateUSerController';
 import {AuthUserController} from './controllers/user/AuthUserController';
@@ -11,6 +11,7 @@ import { CreateGarmetControler } from "./controllers/garments/CreateGarmetsContr
 import {ListByColectionControler} from "./controllers/garments/ListByColectionControler";
 import { UpdateColectionControler } from "./controllers/colections/UpdateColectionControler";
 import { DeleteColectionControler } from "./controllers/colections/DeleteColectionControler";
+import { DeleteGarmentControler } from "./controllers/garments/DeleteGarmentControler";
 import uploadConfig from './config/multer';
 
 const router = Router();
@@ -45,4 +46,6 @@ router.post('/garment',isAuthenticated,upload.single('file'),new CreateGarmetCon
 
 router.get('/colection/garment',isAuthenticated,new ListByColectionControler().handle)//Lista os produtos pela coleção 
  
+router.delete('/colection/garment/name',isAuthenticated, new DeleteGarmentControler().handle)//Deleta uma peça específica
+
 export {router};
