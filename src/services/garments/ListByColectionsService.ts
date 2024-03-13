@@ -7,8 +7,10 @@ interface ProductRequest{
 class ListByColectionService{
    async execute({name}:ProductRequest){
        const findByName = await prismaClient.garment.findMany({
-        where:{
-            name :name
+        where: {
+            colection: {
+                name: name
+            }
         }
        })
        return findByName;
